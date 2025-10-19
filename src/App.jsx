@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 
 const App = () => {
-  // const [count, setCount] = useState(0);
+  const [count, setCount] = useState(0);
 
   const [inputValue, setInputValue] = useState("");
+  const [input,setinput]= useState("")
+  
 
   return (
     // <div>
@@ -13,15 +15,28 @@ const App = () => {
 
     // </div>
 
-    <div className="p-5">
-      <input
-        className="bg-green-300 py-2 pl-1 mb-3 outline rounded"
-        type="text" placeholder="Type Something here..." value={inputValue} onChange={(e) => setInputValue(e.target.value)}
-      />
-      <p>
-        You Typed : <strong>{inputValue}</strong>
-      </p>
-    </div>
+    // <div className="p-5">
+    //   <input
+    //     className="bg-green-300 py-2 pl-1 mb-3 outline rounded"
+    //     type="text" placeholder="Type Something here..." value={inputValue} onChange={(e) => setInputValue(e.target.value)}
+    //   />
+    //   <p>
+    //     You Typed : <strong>{inputValue}</strong>
+    //   </p>
+    // </div>
+<dir>
+    <div className="text-center">
+      <p className="outline rounded px-4 bg-white-400 mt-7  "> you Clicked {count} date</p>
+      <button onClick={()=>setCount(count-1)}className="outline rounded px-4 bg-green-400 mt-7">increse</button>
+      <button onClick={()=>setCount(count*0)}className="outline rounded px-4 bg-green-400 ">reset</button>
+      </div>
+    <div>
+      <p> change{input}</p>
+<input className="border-2" type="text" placeholder="change password" value={input} onChange={(e)=>setInputValue(e.target.value)}/>
+</div>
+</dir>
+
+   
   );
 };
 
