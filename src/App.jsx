@@ -1,28 +1,48 @@
 import React, { useEffect, useState } from "react";
 
 const App = () => {
-  const [count, setCount] = useState(0);
+  // const [count, setCount] = useState(0);
 
-  useEffect(() => {
-    // the code that we want to run
-    console.log("this is count", count);
+  // useEffect(() => {
+  // the code that we want to run
+  // console.log("this is count", count);
 
-    // optional return function
-  }, []); // the dependency array
+  // optional return function
+  // }, [count]); // the dependency array
 
   // const [inputValue, setInputValue] = useState("");
   // const [input, setinput] = useState("");
 
   // this is the modren method of increment and decrement
   // we also use simple method in the first example..
-  function increment() {
-    setCount((prevCount) => prevCount + 1);
-  }
-  function decrement() {
-    setCount((prevCount) => prevCount - 1);
-  }
+  // function increment() {
+  // setCount((prevCount) => prevCount + 1);
+  // }
+  // function decrement() {
+  //   setCount((prevCount) => prevCount - 1);
+  // }
+
+  const [color, setColor] = useState("Red");
 
   return (
+    <div>
+      <h1>You Select {color} Color! </h1>
+      <button type="button" onClick={() => setColor("Blue")} className="me-2">
+        Blue
+      </button>
+      <button type="button" onClick={() => setColor("Green")} className="me-2">
+        Green
+      </button>
+      <button type="button" onClick={() => setColor("Orange")} className="me-2">
+        Orange
+      </button>
+      <button type="button" onClick={() => setColor("Pink")} className="me-2">
+        Pink
+      </button>
+      <button type="button" onClick={() => setColor("Indigo")} className="me-2">
+        Indigo
+      </button>
+    </div>
     // <div>
     //   <p>You Clicked {count} Times</p>
 
@@ -70,15 +90,15 @@ const App = () => {
     //   </div>
     // </div>
 
-    <div className="p-2">
-      <button className="bg-red-400 px-4 rounded" onClick={decrement}>
-        -
-      </button>
-      <span> {count} </span>
-      <button className="bg-red-400 px-4 rounded" onClick={increment}>
-        +
-      </button>
-    </div>
+    // <div className="p-2">
+    //   <button className="bg-red-400 px-4 rounded" onClick={decrement}>
+    //     -
+    //   </button>
+    //   <span> {count} </span>
+    //   <button className="bg-red-400 px-4 rounded" onClick={increment}>
+    //     +
+    //   </button>
+    // </div>
   );
 };
 
