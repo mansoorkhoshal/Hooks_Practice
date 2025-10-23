@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 const App = () => {
   // const [count, setCount] = useState(0);
@@ -22,27 +22,50 @@ const App = () => {
   //   setCount((prevCount) => prevCount - 1);
   // }
 
-  const [color, setColor] = useState("Red");
+  // const [color, setColor] = useState("Red");
+
+  const [car, setCar] = useState({
+    brand: "Cultus",
+    model: "Suzuki",
+    year: "1947",
+    color: "red",
+  });
+
+  const updateColor = () => {
+    setCar(previousState => {
+      return { ...previousState, color: "blue" };
+    });
+  };
 
   return (
     <div>
-      <h1>You Select {color} Color! </h1>
-      <button type="button" onClick={() => setColor("Blue")} className="me-2">
+      <h1>My {car.brand}</h1>
+      <h1>
+        It is a {car.model}, in {car.color} color from {car.year}.
+      </h1>
+      <button type="button" onClick={updateColor}>
         Blue
       </button>
-      <button type="button" onClick={() => setColor("Green")} className="me-2">
-        Green
-      </button>
-      <button type="button" onClick={() => setColor("Orange")} className="me-2">
-        Orange
-      </button>
-      <button type="button" onClick={() => setColor("Pink")} className="me-2">
-        Pink
-      </button>
-      <button type="button" onClick={() => setColor("Indigo")} className="me-2">
-        Indigo
-      </button>
     </div>
+
+    // <div>
+    //   <h1>You Select {color} Color! </h1>
+    //   <button type="button" onClick={() => setColor("Blue")} className="me-2">
+    //     Blue
+    //   </button>
+    //   <button type="button" onClick={() => setColor("Green")} className="me-2">
+    //     Green
+    //   </button>
+    //   <button type="button" onClick={() => setColor("Orange")} className="me-2">
+    //     Orange
+    //   </button>
+    //   <button type="button" onClick={() => setColor("Pink")} className="me-2">
+    //     Pink
+    //   </button>
+    //   <button type="button" onClick={() => setColor("Indigo")} className="me-2">
+    //     Indigo
+    //   </button>
+    // </div>
     // <div>
     //   <p>You Clicked {count} Times</p>
 
