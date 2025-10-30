@@ -132,9 +132,11 @@ import React, { useEffect, useState } from "react";
 function App() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [title, setTitle] = useState("");
+  const [body, setBody] = useState("");
 
   useEffect(() => {
-    // Call dummy API
+    // GET request
     fetch("https://jsonplaceholder.typicode.com/posts")
       .then((response) => response.json())
       .then((result) => {
@@ -145,18 +147,71 @@ function App() {
         console.error("Error fetching data:", error);
         setLoading(false);
       });
-  }, []); // Empty dependency array = runs only once (on mount)
+  }, []);
+
+  // POST request — make payload and send to API
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    // Step 1: create payload (data to send)
+    const payload = {
+      Name: title,
+      Password: body,
+    };
+
+    // Step 2: send it using fetch
+    fetch("https://jsonplaceholder.typicode.com/posts", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload), // convert object → JSON
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        console.log("Post created:", result);
+        alert("Post sent successfully!");
+        // Optionally add new post to list
+        setData([result, ...data]);
+      })
+      .catch((err) => console.error("Error sending post:", err));
+  };
 
   if (loading) return <p>Loading...</p>;
 
   return (
-    <div>
-      <h2>Dummy API Data</h2>
+    <div className="ml-2">
+      <h2 className="m-1">Sign Up/LogIn With Dummey API Data</h2>
+
+      <form onSubmit={handleSubmit}>
+        <input
+          className="border-1 rounded"
+          type="text"
+          placeholder="Enter Name"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+        />
+        <br />
+        <input
+          className="border-1 mt-1 rounded"
+          placeholder="Enter Password"
+          value={body}
+          onChange={(e) => setBody(e.target.value)}
+        ></input>
+        <br />
+        <button type="submit" className="bg-green-400 m-1 p-2 rounded">
+          Send Post
+        </button>
+      </form>
+
+      <hr />
+
+      {/* Display Data */}
       <ul>
         {data.slice(0, 5).map((item) => (
           <li key={item.id}>
-            <strong>{item.title}</strong>
-            <p>{item.body}</p>
+            <strong>{item.Name}</strong>
+            <p>{item.Password}</p>
           </li>
         ))}
       </ul>
